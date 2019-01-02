@@ -22,8 +22,14 @@ namespace SadRogue
         // Returns true is actor was able to move, false if failed to move
         public bool MoveBy(Point positionChange)
         {
-            Position += positionChange;
-            return true;
+            // Check the map if this location is valid
+            if (GameLoop.World.CurrentMap.IsTileWalkable(Position + positionChange))
+            {
+                Position += positionChange;
+                return true;
+            }
+            else
+                return false;
         }
 
         // Moves the Actor TO newPosition location

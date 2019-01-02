@@ -12,8 +12,8 @@ namespace SadRogue
     {
 
         // Movement and LOS Flags
-        protected bool IsBlockingMove;
-        protected bool IsBlockingLOS;
+        public bool IsBlockingMove;
+        public bool IsBlockingLOS;
 
         // Tile's Name
         protected string Name;
