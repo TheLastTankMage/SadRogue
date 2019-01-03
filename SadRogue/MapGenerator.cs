@@ -14,6 +14,8 @@ namespace SadRogue
 
         }
 
+        public Point randSpawn;
+
         Map _map; // Temporarily store the map currently worked on
 
         public object Rooms { get; private set; }
@@ -83,6 +85,9 @@ namespace SadRogue
                     CreateHorizontalTunnel(previousRoomCenter.X, currentRoomCenter.X, currentRoomCenter.Y);
                 }
             }
+
+            int randroom = randNum.Next(0, Rooms.Count);
+            randSpawn = Rooms[randroom].Center;
 
             // Return the Finished Map
             return _map;

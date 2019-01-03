@@ -1,12 +1,11 @@
 ﻿<Properties StartupConfiguration="{39262EAB-36B9-4733-8E42-888233EB7D20}|Default">
-  <MonoDevelop.Ide.Workbench ActiveDocument="SadRogue/GameLoop.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="SadRogue/World.cs">
     <Files>
-      <File FileName="SadRogue/GameLoop.cs" Line="79" Column="69" />
-      <File FileName="SadRogue/TileBase.cs" Line="6" Column="2" />
-      <File FileName="SadRogue/TileWall.cs" Line="7" Column="37" />
-      <File FileName="SadRogue/TileFloor.cs" Line="11" Column="46" />
-      <File FileName="SadRogue/Actor.cs" Line="38" Column="1" />
-      <File FileName="SadRogue/Player.cs" Line="16" Column="2" />
+      <File FileName="SadRogue/Commands/CommandManager.cs" Line="23" Column="9" />
+      <File FileName="SadRogue/UI/UIManager.cs" Line="96" Column="43" />
+      <File FileName="SadRogue/GameLoop.cs" Line="31" Column="47" />
+      <File FileName="SadRogue/MapGenerator.cs" Line="30" Column="13" />
+      <File FileName="SadRogue/World.cs" Line="56" Column="57" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />

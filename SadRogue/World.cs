@@ -20,6 +20,8 @@ namespace SadRogue
         // player data
         public Player Player { get; set; }
 
+        private Point pSpawn;
+
         // Creates a new game world and stores it in
         // publicly accessible
         public World()
@@ -28,7 +30,7 @@ namespace SadRogue
             CreateMap();
 
             // create an instance of player
-            CreatePlayer();
+            CreatePlayer(pSpawn);
         }
 
         // Create a new map using the Map class
@@ -40,14 +42,15 @@ namespace SadRogue
             CurrentMap = new Map(_mapWidth, _mapHeight);
             MapGenerator mapGen = new MapGenerator();
             CurrentMap = mapGen.GenerateMap(_mapWidth, _mapHeight, _maxRooms, _minRoomSize, _maxRoomSize);
+            pSpawn = mapGen.randSpawn;
         }
 
         // Create a player using the Player class
         // and set its starting position
-        private void CreatePlayer()
+        private void CreatePlayer(Point spawn)
         {
             Player = new Player(Color.Yellow, Color.Transparent);
-            Player.Position = new Point(5, 5);
+            Player.Position = spawn;
 
             // add the player to the global EntityManager's collection of Entities
             GameLoop.EntityManager.Entities.Add(Player);

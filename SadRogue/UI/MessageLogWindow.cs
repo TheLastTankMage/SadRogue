@@ -52,6 +52,9 @@ namespace SadRogue.UI
 
             // enable mouse input
             UseMouse = true;
+
+            // add all child consoles to the window
+            Children.Add(_messageConsole);
         }
 
         // Remember to draw the window
@@ -69,7 +72,15 @@ namespace SadRogue.UI
             {
                 _lines.Dequeue();
             }
-            Cursor.Print(message + "\r\n");
+            _messageConsole.Cursor.Position = new Point(1, _lines.Count);
+            _messageConsole.Cursor.Print(message + "\r\n");
+        }
+
+        // print directly to the queue without adding a new line
+        public void Print(string text)
+        {
+            string[] lines = _lines.ToArray();
+            lines[lines.Length] += text;
         }
 
         // Controls the position of the messagelog viewport

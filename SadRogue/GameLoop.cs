@@ -4,6 +4,7 @@ using Console = SadConsole.Console;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using SadRogue.UI;
+using SadRogue.Commands;
 
 namespace SadRogue
 {
@@ -15,7 +16,7 @@ namespace SadRogue
 
         public static SadConsole.Entities.EntityManager EntityManager;
         public static UIManager UIManager;
-
+        public static CommandManager CommandManager;
         public static World World;
 
         static void Main(string[] args)
@@ -51,6 +52,9 @@ namespace SadRogue
 
             // Instantiate the UIManager
             UIManager = new UIManager();
+
+            // Instantiate the CommandManager
+            CommandManager = new CommandManager();
 
             // Build the World
             World = new World();

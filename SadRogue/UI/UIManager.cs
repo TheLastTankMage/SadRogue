@@ -63,7 +63,7 @@ namespace SadRogue.UI
             // Decrement player's Y coordinate by 1
             if (SadConsole.Global.KeyboardState.IsKeyPressed(Microsoft.Xna.Framework.Input.Keys.Up))
             {
-                GameLoop.World.Player.MoveBy(new Point(0, -1));
+                GameLoop.CommandManager.MoveActorBy(GameLoop.World.Player, new Point(0, -1));
                 CenterOnActor(GameLoop.World.Player);
             }
 
@@ -71,7 +71,7 @@ namespace SadRogue.UI
             // Increment player's Y coordinate by 1
             if (SadConsole.Global.KeyboardState.IsKeyPressed(Microsoft.Xna.Framework.Input.Keys.Down))
             {
-                GameLoop.World.Player.MoveBy(new Point(0, 1));
+                GameLoop.CommandManager.MoveActorBy(GameLoop.World.Player, new Point(0, 1));
                 CenterOnActor(GameLoop.World.Player);
             }
 
@@ -79,7 +79,7 @@ namespace SadRogue.UI
             // Decrement player's X coordinate by 1
             if (SadConsole.Global.KeyboardState.IsKeyPressed(Microsoft.Xna.Framework.Input.Keys.Left))
             {
-                GameLoop.World.Player.MoveBy(new Point(-1, 0));
+                GameLoop.CommandManager.MoveActorBy(GameLoop.World.Player, new Point(-1, 0));
                 CenterOnActor(GameLoop.World.Player);
             }
 
@@ -87,7 +87,7 @@ namespace SadRogue.UI
             // Increment player's X coordinate by 1
             if (SadConsole.Global.KeyboardState.IsKeyPressed(Microsoft.Xna.Framework.Input.Keys.Right))
             {
-                GameLoop.World.Player.MoveBy(new Point(1, 0));
+                GameLoop.CommandManager.MoveActorBy(GameLoop.World.Player, new Point(1, 0));
                 CenterOnActor(GameLoop.World.Player);
             }
         }
@@ -112,6 +112,7 @@ namespace SadRogue.UI
 
             //reposition the MapConsole so it doesnt overlap with the left/top window edges
             MapConsole.Position = new Point(1, 1);
+            CenterOnActor(GameLoop.World.Player); //Focus on Player
 
             //close window button
             Button closeButton = new Button(3, 1);
