@@ -14,7 +14,7 @@ namespace SadRogue
 
         }
 
-        public Point randSpawn;
+        public Point randSpawn; // Used in GenerateMap() to get a random room for player spawn
 
         Map _map; // Temporarily store the map currently worked on
 
@@ -86,6 +86,8 @@ namespace SadRogue
                 }
             }
 
+            // Gets the center point to a random room 
+            // that we can use to spawn the player on load
             int randroom = randNum.Next(0, Rooms.Count);
             randSpawn = Rooms[randroom].Center;
 
