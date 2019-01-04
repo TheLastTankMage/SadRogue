@@ -1,5 +1,6 @@
 ﻿using System;
 using Microsoft.Xna.Framework;
+using SadRogue.Entities;
 
 namespace SadRogue
 {
@@ -31,6 +32,9 @@ namespace SadRogue
 
             // create an instance of player
             CreatePlayer(pSpawn);
+
+            // Spawn a set number of monsters
+            CreateMonsters();
         }
 
         // Create a new map using the Map class
@@ -54,6 +58,45 @@ namespace SadRogue
 
             // add the player to the global EntityManager's collection of Entities
             GameLoop.EntityManager.Entities.Add(Player);
+        }
+
+        // Create some random monsters with random attack and defense values
+        // and drop them all over the map in random locations.
+        private void CreateMonsters()
+        {
+            // number of monsters to create
+            int numMonsters = 10;
+
+            // random position generator
+            Random rndNum = new Random();
+
+            // Create several monsters and
+            // pick a random position on the map to place them.
+            // Check if the placement spot is blocked
+            // and if it is, try a new position
+            for (int i=0; i < numMonsters; i++)
+            {
+                int monsterPosition = 0;
+                Monster newMonster = new Monster(Color.Blue, Color.Transparent);
+                while (CurrentMap.Tiles[monsterPosition].IsBlockingMove)
+                {
+                    // Pick a random spot on the map
+                    monsterPosition = rndNum.Next(0, CurrentMap.Width * CurrentMap.Height);
+                }
+
+                // Plug in some magic numbers for attack and defense values
+                newMonster.Defense = rndNum.Next(0, 10);
+                newMonster.DefenseChance = rndNum.Next(0, 50);
+                newMonster.Attack = rndNum.Next(0, 10);
+                newMonster.AttackChance = rndNum.Next(0, 50);
+                newMonster.Name = "a common punk";
+
+                // Set the monster's new position
+                // Note: This fancy math will be replace by a new helper method
+                // in the next revision of SadConsole
+                newMonster.Position = new Point(monsterPosition % CurrentMap.Width, monsterPosition / CurrentMap.Width);
+                GameLoop.EntityManager.Entities.Add(newMonster);
+            }
         }
     }
 }

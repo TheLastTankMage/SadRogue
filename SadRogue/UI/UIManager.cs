@@ -2,6 +2,7 @@
 using Microsoft.Xna.Framework;
 using SadConsole;
 using SadConsole.Controls;
+using SadRogue.Entities;
 
 namespace SadRogue.UI
 {
@@ -90,6 +91,20 @@ namespace SadRogue.UI
                 GameLoop.CommandManager.MoveActorBy(GameLoop.World.Player, new Point(1, 0));
                 CenterOnActor(GameLoop.World.Player);
             }
+
+            // Undo last command: Z
+            if (SadConsole.Global.KeyboardState.IsKeyPressed(Microsoft.Xna.Framework.Input.Keys.Z))
+            {
+                GameLoop.CommandManager.UndoMoveActorBy();
+                CenterOnActor(GameLoop.World.Player);
+            }
+
+            // Redo last command: X
+            if (SadConsole.Global.KeyboardState.IsKeyPressed(Microsoft.Xna.Framework.Input.Keys.X))
+            {
+                GameLoop.CommandManager.RedoMoveActorBy();
+                CenterOnActor(GameLoop.World.Player);
+            }
         }
 
         // Creates a window that encloses a map console
@@ -112,7 +127,6 @@ namespace SadRogue.UI
 
             //reposition the MapConsole so it doesnt overlap with the left/top window edges
             MapConsole.Position = new Point(1, 1);
-            CenterOnActor(GameLoop.World.Player); //Focus on Player
 
             //close window button
             Button closeButton = new Button(3, 1);
@@ -140,6 +154,8 @@ namespace SadRogue.UI
         {
             CreateConsoles();
             CreateMapWindow(GameLoop.GameWidth / 2, GameLoop.GameHeight / 2, "Game Map");
+
+            CenterOnActor(GameLoop.World.Player); //Focus on Player
 
             MessageLog = new MessageLogWindow(GameLoop.GameWidth / 2, GameLoop.GameHeight / 2, "Message Log");
             Children.Add(MessageLog);

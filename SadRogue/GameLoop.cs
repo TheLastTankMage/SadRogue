@@ -5,6 +5,7 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using SadRogue.UI;
 using SadRogue.Commands;
+using SadRogue.Entities;
 
 namespace SadRogue
 {
@@ -14,7 +15,7 @@ namespace SadRogue
         public const int GameWidth = 40;
         public const int GameHeight = 40;
 
-        public static SadConsole.Entities.EntityManager EntityManager;
+        public static EntityManager EntityManager;
         public static UIManager UIManager;
         public static CommandManager CommandManager;
         public static World World;
@@ -48,7 +49,7 @@ namespace SadRogue
         private static void Init()
         {
             // Instantiate the EntityManager
-            EntityManager = new SadConsole.Entities.EntityManager();
+            EntityManager = new EntityManager();
 
             // Instantiate the UIManager
             UIManager = new UIManager();
