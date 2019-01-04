@@ -1,7 +1,7 @@
 ﻿<Properties StartupConfiguration="{39262EAB-36B9-4733-8E42-888233EB7D20}|Default">
   <MonoDevelop.Ide.Workbench ActiveDocument="SadRogue/Entities/Actor.cs">
     <Files>
-      <File FileName="SadRogue/Entities/Actor.cs" Line="56" Column="1" />
+      <File FileName="SadRogue/Entities/Actor.cs" Line="46" Column="9" />
       <File FileName="SadRogue/Entities/EntityManager.cs" Line="27" Column="6" />
       <File FileName="SadRogue/Entities/Player.cs" Line="16" Column="32" />
     </Files>
