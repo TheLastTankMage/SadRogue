@@ -35,6 +35,9 @@ namespace SadRogue
 
             // Spawn a set number of monsters
             CreateMonsters();
+
+            // Spawn some basic loot
+            CreateLoot();
         }
 
         // Create a new map using the Map class
@@ -97,6 +100,32 @@ namespace SadRogue
                 newMonster.Position = new Point(monsterPosition % CurrentMap.Width, monsterPosition / CurrentMap.Width);
                 GameLoop.EntityManager.Entities.Add(newMonster);
             }
+        }
+
+        // Create some sample treasure
+        // that can be picked up on the map
+        private void CreateLoot()
+        {
+            // number of treasure drops to create
+            int numLoot = 20;
+
+            Random rndNum = new Random();
+
+            for (int i = 0; i < numLoot; i++)
+            {
+                int lootPosition = 0;
+                Item newLoot = new Item(Color.Green, Color.Transparent, "fancy shirt", 'L', 2);
+                while (CurrentMap.Tiles[lootPosition].IsBlockingMove)
+                {
+                    // pick a random spot on the map
+                    lootPosition = rndNum.Next(0, CurrentMap.Width * CurrentMap.Height);
+                }
+
+                // set the loot's new position
+                newLoot.Position = new Point(lootPosition % CurrentMap.Width, lootPosition / CurrentMap.Width);
+                GameLoop.EntityManager.Entities.Add(newLoot);
+            }
+
         }
     }
 }

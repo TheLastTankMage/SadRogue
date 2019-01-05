@@ -106,13 +106,14 @@ namespace SadRogue.Commands
         {
             // Create a string that expresses the attacker and defender's names
             int hits = 0;
-            attackMessage.AppendFormat("{0} attacks {1}, ", attacker.Name, defender.Name);
+            attackMessage.AppendFormat("{0} attacks {1}, and rolls: ", attacker.Name, defender.Name);
 
             // The attacker's Attack value determines the number of D100 dice rolled
             for (int dice = 0; dice < attacker.Attack; dice++)
             {
                 // Roll a single D100 and add its results to the attack message
                 int diceOutcome = Dice.Roll("1d100");
+                attackMessage.AppendFormat($"{diceOutcome} ");
 
                 // Resolve the dicing outcome and register a hit, govered by the
                 // atttacker's AttackChance value.
@@ -134,13 +135,14 @@ namespace SadRogue.Commands
             {
                 // Create a string that displays the defender's name and outcomes
                 attackMessage.AppendFormat("scoring {0} hits.", hits);
-                defenseMessage.AppendFormat(" {0} defends and rolls: ", defender.Name);
+                defenseMessage.AppendFormat("{0} defends and rolls: ", defender.Name);
 
                 // The defender's Defense value determines the number of D100 dice rolled
                 for (int dice = 0; dice < defender.Defense; dice++)
                 {
                     // Roll a single D100 and add its results to the defense Message
                     int diceOutcome = Dice.Roll("1d100");
+                    defenseMessage.AppendFormat($"{diceOutcome} ");
 
                     // Resolve the dicing outcome and register a block, governed by the
                     // attacker's DefenceChance value.
@@ -164,7 +166,7 @@ namespace SadRogue.Commands
             if (damage > 0)
             {
                 defender.Health = defender.Health - damage;
-                GameLoop.UIManager.MessageLog.Add($" {defender.Name} was hit for {damage} damage");
+                GameLoop.UIManager.MessageLog.Add($"{defender.Name} was hit for {damage} damage");
                 if (defender.Health <= 0)
                 {
                     ResolveDeath(defender);
@@ -177,10 +179,17 @@ namespace SadRogue.Commands
         }
 
         // Removes an Actor that has died
-        // and displays a message showing
-        // the number of Gold dropped.
+        // and displays a message showing who died
         private static void ResolveDeath(Actor defender)
         {
+            // dump the dead actor's inventory (if any)
+            // on to the map position where it died
+            foreach (Item item in defender.Inventory)
+            {
+                item.Position = defender.Position;
+                GameLoop.EntityManager.Entities.Add(item);
+            }
+
             GameLoop.EntityManager.Entities.Remove(defender);
 
             if (defender is Player)
@@ -189,8 +198,19 @@ namespace SadRogue.Commands
             }
             else if (defender is Monster)
             {
-                GameLoop.UIManager.MessageLog.Add($"{defender.Name} died and dropped {defender.Gold} gold coins.");
+                GameLoop.UIManager.MessageLog.Add($"{defender.Name} died.");
             }
+        }
+
+        // Tries to pick up an Item and add it to the Actor's
+        // inventory list
+        public void Pickup(Actor actor, Item item)
+        {
+            // Add the item to the Actor's inventory list
+            // and then remove it from the EntityManager
+            actor.Inventory.Add(item);
+            GameLoop.UIManager.MessageLog.Add($"{actor.Name} picked up {item.Name}");
+            item.Destroy();
         }
 
     }

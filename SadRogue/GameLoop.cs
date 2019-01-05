@@ -12,8 +12,8 @@ namespace SadRogue
     class GameLoop
     {
 
-        public const int GameWidth = 40;
-        public const int GameHeight = 40;
+        public const int GameWidth = 60;
+        public const int GameHeight = 60;
 
         public static EntityManager EntityManager;
         public static UIManager UIManager;
