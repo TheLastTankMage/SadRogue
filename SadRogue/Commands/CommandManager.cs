@@ -181,6 +181,14 @@ namespace SadRogue.Commands
         // the number of Gold dropped.
         private static void ResolveDeath(Actor defender)
         {
+            // Dump the dead actor's inventory (if any)
+            // on to the map position where it died
+            foreach (Item item in defender.Inventory)
+            {
+                item.Position = defender.Position;
+                GameLoop.EntityManager.Entities.Add(item);
+            }
+
             GameLoop.EntityManager.Entities.Remove(defender);
 
             if (defender is Player)
@@ -191,6 +199,17 @@ namespace SadRogue.Commands
             {
                 GameLoop.UIManager.MessageLog.Add($"{defender.Name} died and dropped {defender.Gold} gold coins.");
             }
+        }
+
+        // Tries to pick up an Item and add it to the Actor's
+        // inventory list
+        public void Pickup(Actor actor, Item item)
+        {
+            // Add the item to the Actor's inventory list
+            // and then remove it from the EntityManager
+            actor.Inventory.Add(item);
+            GameLoop.UIManager.MessageLog.Add($"{actor.Name} picked up {item.Name}");
+            item.Destroy();
         }
 
     }

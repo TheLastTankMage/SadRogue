@@ -59,6 +59,7 @@
     <Compile Include="Entities\Player.cs" />
     <Compile Include="Entities\Monster.cs" />
     <Compile Include="Entities\EntityManager.cs" />
+    <Compile Include="Item.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="MonoGame.Framework">

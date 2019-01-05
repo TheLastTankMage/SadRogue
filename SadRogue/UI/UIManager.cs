@@ -153,38 +153,16 @@ namespace SadRogue.UI
         public void Init()
         {
             CreateConsoles();
-            CreateMapWindow(GameLoop.GameWidth / 2, GameLoop.GameHeight / 2, "Game Map");
+            CreateMapWindow(GameLoop.GameWidth, GameLoop.GameHeight - (GameLoop.GameHeight / 4), "Game Map");
 
             CenterOnActor(GameLoop.World.Player); //Focus on Player
 
-            MessageLog = new MessageLogWindow(GameLoop.GameWidth / 2, GameLoop.GameHeight / 2, "Message Log");
+            MessageLog = new MessageLogWindow(GameLoop.GameWidth, GameLoop.GameHeight / 4, "Message Log");
             Children.Add(MessageLog);
             MessageLog.Show();
-            MessageLog.Position = new Point(0, GameLoop.GameHeight / 2);
+            MessageLog.Position = new Point(0, GameLoop.GameHeight - MessageLog.Height);
 
-            MessageLog.Add("Testing 1");
-            MessageLog.Add("Testing 12");
-            MessageLog.Add("Testing 123");
-            MessageLog.Add("Testing 1234");
-            MessageLog.Add("Testing 12345");
-            MessageLog.Add("Testing 13");
-            MessageLog.Add("Testing 111");
-            MessageLog.Add("Testing 1123");
-            MessageLog.Add("Testing 1213");
-            MessageLog.Add("Testing 11333");
-            MessageLog.Add("Testing 111");
-            MessageLog.Add("Testing 11");
-            MessageLog.Add("Testing 12345");
-            MessageLog.Add("Testing 1");
-            MessageLog.Add("Testing 11");
-            MessageLog.Add("Testing 31");
-            MessageLog.Add("Testing 14");
-            MessageLog.Add("Testing 12345");
-            MessageLog.Add("Testing 61");
-            MessageLog.Add("Testing 17");
-            MessageLog.Add("Testing 12345");
-            MessageLog.Add("Testing 51");
-            MessageLog.Add("END");
+            MessageLog.Add("Welcome to this dumb game!");
         }
 
     }

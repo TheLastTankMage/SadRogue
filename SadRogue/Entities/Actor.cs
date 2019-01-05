@@ -1,5 +1,6 @@
 ﻿using System;
 using Microsoft.Xna.Framework;
+using System.Collections.Generic;
 
 namespace SadRogue.Entities
 {
@@ -13,6 +14,7 @@ namespace SadRogue.Entities
         public int Defense { get; set; } // Defensive Stength
         public int DefenseChance { get; set; } // Block Percentage
         public int Gold { get; set; } // Amount of gold carried
+        public List<Item> Inventory = new List<Item>(); // The Player's collection of items
 
         protected Actor(Color foreground, Color background, int glyph, int width=1, int height=1) : base(width, height)
         {
@@ -31,9 +33,17 @@ namespace SadRogue.Entities
                 // if there is a monster here
                 // do a bump attack
                 Monster monster = GameLoop.EntityManager.GetEntityAt<Monster>(Position + positionChange);
+                Item item = GameLoop.EntityManager.GetEntityAt<Item>(Position + positionChange);
                 if (monster != null)
                 {
                     GameLoop.CommandManager.Attack(this, monster);
+                    return true;
+                }
+                // if there is an item here,
+                // try to pick it up
+                else if (item != null)
+                {
+                    GameLoop.CommandManager.Pickup(this, item);
                     return true;
                 }
 
