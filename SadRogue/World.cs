@@ -36,7 +36,11 @@ namespace SadRogue
             // Spawn a set number of monsters
             CreateMonsters();
 
+<<<<<<< HEAD
             // Spawn some loot
+=======
+            // Spawn some basic loot
+>>>>>>> 6c0f49586563549f07fb130268896d55b1beda14
             CreateLoot();
         }
 
@@ -106,11 +110,16 @@ namespace SadRogue
         // that can be picked up on the map
         private void CreateLoot()
         {
+<<<<<<< HEAD
             // Number of treasure drops to create
+=======
+            // number of treasure drops to create
+>>>>>>> 6c0f49586563549f07fb130268896d55b1beda14
             int numLoot = 20;
 
             Random rndNum = new Random();
 
+<<<<<<< HEAD
             for (int i=0; i < numLoot; i++)
             {
                 int lootPosition = 0;
@@ -125,6 +134,23 @@ namespace SadRogue
                 newLoot.Position = new Point(lootPosition % CurrentMap.Width, lootPosition / CurrentMap.Width);
                 GameLoop.EntityManager.Entities.Add(newLoot);
             }
+=======
+            for (int i = 0; i < numLoot; i++)
+            {
+                int lootPosition = 0;
+                Item newLoot = new Item(Color.Green, Color.Transparent, "fancy shirt", 'L', 2);
+                while (CurrentMap.Tiles[lootPosition].IsBlockingMove)
+                {
+                    // pick a random spot on the map
+                    lootPosition = rndNum.Next(0, CurrentMap.Width * CurrentMap.Height);
+                }
+
+                // set the loot's new position
+                newLoot.Position = new Point(lootPosition % CurrentMap.Width, lootPosition / CurrentMap.Width);
+                GameLoop.EntityManager.Entities.Add(newLoot);
+            }
+
+>>>>>>> 6c0f49586563549f07fb130268896d55b1beda14
         }
     }
 }

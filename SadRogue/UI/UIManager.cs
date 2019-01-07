@@ -30,6 +30,7 @@ namespace SadRogue.UI
         // Creates all child consoles to be managed
         public void CreateConsoles()
         {
+            // Create Map Console
             MapConsole = new SadConsole.Console(GameLoop.World.CurrentMap.Width, GameLoop.World.CurrentMap.Height, Global.FontDefault, new Rectangle(0, 0, GameLoop.GameWidth, GameLoop.GameHeight), GameLoop.World.CurrentMap.Tiles);
 
             // Don't forget to add the EntityManager to the MapConsole
@@ -162,7 +163,11 @@ namespace SadRogue.UI
             MessageLog.Show();
             MessageLog.Position = new Point(0, GameLoop.GameHeight - MessageLog.Height);
 
+<<<<<<< HEAD
             MessageLog.Add("Welcome to this dumb game!");
+=======
+            MessageLog.Add("Welcome to this crappy game");
+>>>>>>> 6c0f49586563549f07fb130268896d55b1beda14
         }
 
     }
